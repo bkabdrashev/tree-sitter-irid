@@ -1,0 +1,43 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "irid",
+      "camelcase": "Irid",
+      "title": "Irid",
+      "scope": "source.irid",
+      "file-types": [
+        "irid",
+        "i"
+      ],
+      "injection-regex": "^irid$",
+      "class-name": "TreeSitterIrid"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Irid tree-sitter grammar",
+    "authors": [
+      {
+        "name": "Bekzat Kabdrashev",
+        "email": "bkbdrsh@gmail.com",
+        "url": ""
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/bkabdrashev/tree-sitter-irid",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": false,
+    "java": false,
+    "node": false,
+    "python": false,
+    "rust": false,
+    "swift": false,
+    "zig": false
+  }
+}
