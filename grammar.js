@@ -35,6 +35,7 @@ export default grammar({
       $.declaration,
       $.while_statement,
       $.return_statement,
+      $.break_statement,
       $.assignment,
       $.expression,
     ),
@@ -51,12 +52,16 @@ export default grammar({
     )),
 
     while_statement: $ => seq(
-      'wh',
+      'while',
       $.expression,
       $.statement
     ),
     return_statement: $ => prec.right(seq(
-      're',
+      'return',
+      optional($.tuple),
+    )),
+    break_statement: $ => prec.right(seq(
+      'break',
       optional($.tuple),
     )),
 
@@ -92,7 +97,7 @@ export default grammar({
     ),
 
     prefix_expression: $ => choice(
-      prec.right(seq("if", $.expression, "do", $.statement, optional(seq('el', $.statement)))),
+      prec.right(seq("if", $.expression, "do", $.statement, optional(seq('else', $.statement)))),
       prec.right(seq("#c", $.expression)),
       prec(PREC.prefix, seq(choice('-', '+', '!'), $.expression)),
       prec(PREC.prefix, seq('@', $.expression)),
@@ -100,6 +105,7 @@ export default grammar({
     suffix_expression: $ => choice(
       prec(PREC.suffix, seq($.expression, choice('++', '--'))),
       prec(PREC.suffix, seq($.expression, '@')),
+      prec(PREC.suffix, seq($.expression, 'bits')),
     ),
     call_expression: $ => prec.left(PREC.suffix, seq(
       $.expression,

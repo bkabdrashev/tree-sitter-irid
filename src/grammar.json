@@ -57,6 +57,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "break_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "assignment"
         },
         {
@@ -165,7 +169,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "wh"
+          "value": "while"
         },
         {
           "type": "SYMBOL",
@@ -185,7 +189,32 @@
         "members": [
           {
             "type": "STRING",
-            "value": "re"
+            "value": "return"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "tuple"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "break_statement": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "break"
           },
           {
             "type": "CHOICE",
@@ -570,7 +599,7 @@
                     "members": [
                       {
                         "type": "STRING",
-                        "value": "el"
+                        "value": "else"
                       },
                       {
                         "type": "SYMBOL",
@@ -694,6 +723,23 @@
               {
                 "type": "STRING",
                 "value": "@"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 11,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              },
+              {
+                "type": "STRING",
+                "value": "bits"
               }
             ]
           }

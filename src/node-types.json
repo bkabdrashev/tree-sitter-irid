@@ -65,6 +65,21 @@
     }
   },
   {
+    "type": "break_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "tuple",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "call_expression",
     "named": true,
     "fields": {},
@@ -311,6 +326,10 @@
       "types": [
         {
           "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "break_statement",
           "named": true
         },
         {
@@ -653,6 +672,14 @@
     "named": false
   },
   {
+    "type": "bits",
+    "named": false
+  },
+  {
+    "type": "break",
+    "named": false
+  },
+  {
     "type": "character",
     "named": true
   },
@@ -661,7 +688,7 @@
     "named": false
   },
   {
-    "type": "el",
+    "type": "else",
     "named": false
   },
   {
@@ -681,7 +708,7 @@
     "named": true
   },
   {
-    "type": "re",
+    "type": "return",
     "named": false
   },
   {
@@ -697,7 +724,7 @@
     "named": false
   },
   {
-    "type": "wh",
+    "type": "while",
     "named": false
   },
   {
