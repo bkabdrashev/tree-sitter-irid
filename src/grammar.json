@@ -276,10 +276,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "char_literal"
-        },
-        {
-          "type": "SYMBOL",
           "name": "string_literal"
         }
       ]
@@ -287,6 +283,22 @@
     "type_basic": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "STRING",
+          "value": "B8"
+        },
+        {
+          "type": "STRING",
+          "value": "B16"
+        },
+        {
+          "type": "STRING",
+          "value": "B32"
+        },
+        {
+          "type": "STRING",
+          "value": "B64"
+        },
         {
           "type": "STRING",
           "value": "I8"
@@ -563,6 +575,27 @@
               }
             ]
           }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 11,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              },
+              {
+                "type": "STRING",
+                "value": "'"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              }
+            ]
+          }
         }
       ]
     },
@@ -678,6 +711,23 @@
               }
             ]
           }
+        },
+        {
+          "type": "PREC",
+          "value": 10,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "bits"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              }
+            ]
+          }
         }
       ]
     },
@@ -723,23 +773,6 @@
               {
                 "type": "STRING",
                 "value": "@"
-              }
-            ]
-          }
-        },
-        {
-          "type": "PREC",
-          "value": 11,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "expression"
-              },
-              {
-                "type": "STRING",
-                "value": "bits"
               }
             ]
           }
@@ -1195,43 +1228,6 @@
           }
         ]
       }
-    },
-    "char_literal": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "'"
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "escape_sequence"
-              },
-              {
-                "type": "ALIAS",
-                "content": {
-                  "type": "IMMEDIATE_TOKEN",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[^\\n']"
-                  }
-                },
-                "named": true,
-                "value": "character"
-              }
-            ]
-          }
-        },
-        {
-          "type": "STRING",
-          "value": "'"
-        }
-      ]
     },
     "concatenated_string": {
       "type": "PREC_RIGHT",

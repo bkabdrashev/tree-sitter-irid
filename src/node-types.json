@@ -99,25 +99,6 @@
     }
   },
   {
-    "type": "char_literal",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "character",
-          "named": true
-        },
-        {
-          "type": "escape_sequence",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "comment_text",
     "named": true,
     "fields": {}
@@ -166,10 +147,6 @@
         },
         {
           "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "char_literal",
           "named": true
         },
         {
@@ -616,6 +593,22 @@
     "named": false
   },
   {
+    "type": "B16",
+    "named": false
+  },
+  {
+    "type": "B32",
+    "named": false
+  },
+  {
+    "type": "B64",
+    "named": false
+  },
+  {
+    "type": "B8",
+    "named": false
+  },
+  {
     "type": "F16",
     "named": false
   },
@@ -678,10 +671,6 @@
   {
     "type": "break",
     "named": false
-  },
-  {
-    "type": "character",
-    "named": true
   },
   {
     "type": "do",

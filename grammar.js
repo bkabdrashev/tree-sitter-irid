@@ -76,11 +76,11 @@ export default grammar({
       $.identifier,
       $.record,
       $.number_literal,
-      $.char_literal,
       $.string_literal,
     ),
 
     type_basic: $ => choice(
+      ...[8, 16, 32, 64].map(n => `B${n}`),
       ...[8, 16, 32, 64].map(n => `I${n}`),
       ...[16, 32, 64].map(n => `F${n}`),
     ),
@@ -93,7 +93,8 @@ export default grammar({
       prec.left(PREC.sum, seq($.expression, choice('+', '-', '|'), $.expression)),
       prec.left(PREC.sum, seq($.expression, '^', $.expression)),
       prec.left(PREC.product, seq($.expression, choice('&', '*', '/', '%', '<<', '>>'), $.expression)),
-      prec.left(PREC.dot, seq($.expression, '.', $.expression))
+      prec.left(PREC.dot, seq($.expression, '.', $.expression)),
+      prec.left(PREC.dot, seq($.expression, '\'', $.expression))
     ),
 
     prefix_expression: $ => choice(
@@ -101,11 +102,12 @@ export default grammar({
       prec.right(seq("#c", $.expression)),
       prec(PREC.prefix, seq(choice('-', '+', '!'), $.expression)),
       prec(PREC.prefix, seq('@', $.expression)),
+      prec(PREC.prefix, seq('bits', $.expression)),
+
     ),
     suffix_expression: $ => choice(
       prec(PREC.suffix, seq($.expression, choice('++', '--'))),
       prec(PREC.suffix, seq($.expression, '@')),
-      prec(PREC.suffix, seq($.expression, 'bits')),
     ),
     call_expression: $ => prec.left(PREC.suffix, seq(
       $.expression,
@@ -161,15 +163,6 @@ export default grammar({
         )),
       ));
     },
-
-    char_literal: $ => seq(
-     '\'',
-      repeat1(choice(
-        $.escape_sequence,
-        alias(token.immediate(/[^\n']/), $.character),
-      )),
-      '\'',
-    ),
 
     // Must concatenate at least 2 nodes, one of which must be a string_literal.
     // Identifier is added to parse macros that are strings, like PRIu64.
