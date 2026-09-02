@@ -135,7 +135,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "array_expression",
@@ -703,6 +703,10 @@
   {
     "type": "string_content",
     "named": true
+  },
+  {
+    "type": "type",
+    "named": false
   },
   {
     "type": "u\"",

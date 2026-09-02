@@ -64,7 +64,6 @@ export default grammar({
       'break',
       optional($.tuple),
     )),
-
     expression: $ => choice(
       $.block,
       $.prefix_expression,
@@ -77,6 +76,8 @@ export default grammar({
       $.record,
       $.number_literal,
       $.string_literal,
+      'bits',
+      'type',
     ),
 
     type_basic: $ => choice(
@@ -102,7 +103,6 @@ export default grammar({
       prec.right(seq("#c", $.expression)),
       prec(PREC.prefix, seq(choice('-', '+', '!'), $.expression)),
       prec(PREC.prefix, seq('@', $.expression)),
-      prec(PREC.prefix, seq('bits', $.expression)),
 
     ),
     suffix_expression: $ => choice(
