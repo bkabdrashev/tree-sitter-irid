@@ -233,7 +233,15 @@
       "required": true,
       "types": [
         {
+          "type": "break_statement",
+          "named": true
+        },
+        {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "return_statement",
           "named": true
         },
         {

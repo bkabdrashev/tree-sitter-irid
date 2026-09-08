@@ -101,7 +101,7 @@ export default grammar({
     ),
 
     prefix_expression: $ => choice(
-      prec.right(seq("if", $.expression, "do", $.statement, optional(seq('else', $.statement)))),
+      prec.right(seq("if", $.expression, choice(seq("do", $.statement), $.return_statement, $.break_statement), optional(seq('else', $.statement)))),
       prec.right(seq("#c", $.expression)),
       prec(PREC.prefix, seq(choice('-', '+', '!'), $.expression)),
       prec(PREC.prefix, seq('@', $.expression)),

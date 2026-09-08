@@ -663,12 +663,30 @@
                 "name": "expression"
               },
               {
-                "type": "STRING",
-                "value": "do"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "statement"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "do"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "statement"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "return_statement"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "break_statement"
+                  }
+                ]
               },
               {
                 "type": "CHOICE",
