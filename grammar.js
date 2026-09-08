@@ -88,13 +88,15 @@ export default grammar({
 
     infix_expression: $ => choice(
       prec.left(PREC.arrow, seq($.expression, '->', $.expression)),
-      prec.left(PREC.pipe_pipe, seq($.expression, choice('||', '\\', '..'), $.expression)),
+      prec.left(PREC.comma, seq($.expression, ',', $.expression)),
+      prec.left(PREC.pipe_pipe, seq($.expression, choice('||', '\\'), $.expression)),
       prec.left(PREC.and_and, seq($.expression, '&&', $.expression)),
       prec.left(PREC.compare, seq($.expression, choice('==', '!=', '>=', '>', '<', '<='), $.expression)),
       prec.left(PREC.sum, seq($.expression, choice('+', '-', '|'), $.expression)),
       prec.left(PREC.sum, seq($.expression, '^', $.expression)),
       prec.left(PREC.product, seq($.expression, choice('&', '*', '/', '%', '<<', '>>'), $.expression)),
       prec.left(PREC.dot, seq($.expression, '.', $.expression)),
+      prec.left(PREC.dot, seq($.expression, '..', $.expression)),
       prec.left(PREC.dot, seq($.expression, '\'', $.expression))
     ),
 
@@ -133,7 +135,7 @@ export default grammar({
     record: $ => seq(
       '(',
       optional(repeat(
-        seq(choice($.named_field, $.expression), optional(','))
+        seq(choice($.named_field, $.expression), optional(';'))
       )),
       ')'
     ),
