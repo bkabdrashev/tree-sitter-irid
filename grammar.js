@@ -102,7 +102,7 @@ export default grammar({
 
     prefix_expression: $ => choice(
       prec.right(seq("if", $.expression, choice(seq("do", $.statement), $.return_statement, $.break_statement), optional(seq('else', $.statement)))),
-      prec.right(seq("#c", $.expression)),
+      prec.right(seq("#", $.statement)),
       prec(PREC.prefix, seq(choice('-', '+', '!'), $.expression)),
       prec(PREC.prefix, seq('@', $.expression)),
 
@@ -154,7 +154,7 @@ export default grammar({
             seq(/0[bB]/, decimalDigits),
             seq(/0[xX]/, hexDigits),
           ),
-          optional(seq('.', optional(hexDigits))),
+          optional(seq('.', hexDigits)),
         ),
         optional(seq(
           /[eEpP]/,
