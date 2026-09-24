@@ -76,7 +76,6 @@ export default grammar({
       $.record,
       $.number_literal,
       $.string_literal,
-      'bits',
       'type',
     ),
 

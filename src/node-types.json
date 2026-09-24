@@ -673,10 +673,6 @@
     "named": false
   },
   {
-    "type": "bits",
-    "named": false
-  },
-  {
     "type": "break",
     "named": false
   },
