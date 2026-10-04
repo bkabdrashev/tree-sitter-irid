@@ -27,6 +27,36 @@
         ]
       }
     },
+    "builtin": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "bits"
+        },
+        {
+          "type": "STRING",
+          "value": "foreign"
+        },
+        {
+          "type": "STRING",
+          "value": "len"
+        }
+      ]
+    },
+    "statement_or_builtin": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "builtin"
+        }
+      ]
+    },
     "statement": {
       "type": "CHOICE",
       "members": [
@@ -318,6 +348,22 @@
         {
           "type": "STRING",
           "value": "I64"
+        },
+        {
+          "type": "STRING",
+          "value": "U8"
+        },
+        {
+          "type": "STRING",
+          "value": "U16"
+        },
+        {
+          "type": "STRING",
+          "value": "U32"
+        },
+        {
+          "type": "STRING",
+          "value": "U64"
         },
         {
           "type": "STRING",
@@ -720,7 +766,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "statement"
+                "name": "statement_or_builtin"
               }
             ]
           }

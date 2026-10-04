@@ -30,6 +30,17 @@ export default grammar({
   rules: {
     source_file: $ => repeat(seq($.statement, optional(';'))),
 
+    builtin: $ => choice(
+      "bits",
+      "foreign",
+      "len"
+    ),
+
+    statement_or_builtin: $ => choice(
+      $.statement,
+      $.builtin,
+    ),
+
     statement: $ => choice(
       seq('do', $.statement),
       $.declaration,
@@ -82,6 +93,7 @@ export default grammar({
     type_basic: $ => choice(
       ...[8, 16, 32, 64].map(n => `B${n}`),
       ...[8, 16, 32, 64].map(n => `I${n}`),
+      ...[8, 16, 32, 64].map(n => `U${n}`),
       ...[16, 32, 64].map(n => `F${n}`),
     ),
 
@@ -101,7 +113,7 @@ export default grammar({
 
     prefix_expression: $ => choice(
       prec.right(seq("if", $.expression, choice(seq("do", $.statement), $.return_statement, $.break_statement), optional(seq('else', $.statement)))),
-      prec.right(seq("#", $.statement)),
+      prec.right(seq("#", $.statement_or_builtin)),
       prec(PREC.prefix, seq(choice('-', '+', '!'), $.expression)),
       prec(PREC.prefix, seq('@', $.expression)),
 
